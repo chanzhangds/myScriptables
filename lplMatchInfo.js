@@ -2,7 +2,10 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: orange; icon-glyph: comments;
 // 
+// iOS 桌面组件脚本 @「小件件」
 // 开发说明：请从 Widget 类开始编写，注释请勿修改
+// https://x.im3x.cn
+// 
 
 // 添加require，是为了vscode中可以正确引入包，以获得自动补全等功能
 // @ts-ignore
@@ -17,8 +20,8 @@ class Widget extends Base {
    */
   constructor (arg) {
     super(arg)
-    this.name = 'lpl小组件'
-    this.desc = 'scriptable小组件'
+    this.name = '示例小组件'
+    this.desc = '「小件件」—— 原创精美实用小组件'
   }
 
   /**
@@ -58,11 +61,11 @@ class Widget extends Base {
       let leftName = lplData[i].leftLogo.name
       let rightName =lplData[i].rightLogo.name
       
-      let tLeft=body.addText(leftName)
+      let tLeft=body.addText(leftName.padStart(3,'   '))
       body.addSpacer(2)
       let tScore = body.addText(lplScore)
       body.addSpacer(2)
-      let tRight=body.addText(rightName)
+      let tRight=body.addText(rightName.padEnd(3,'   '))
       body.addSpacer(1)
       let imgRight = body.addImage( await this.getImage(lplData[i].rightLogo.logo)) 
       w.addSpacer(2)
@@ -116,18 +119,19 @@ class Widget extends Base {
      
       let leftName = lplData[i].leftLogo.name
       // 队名是两个字母的后面补上空格
-      let tLeft = (leftName.length>2)? body.addText(leftName):body.addText(leftName+'  ')
+      
+      let tLeft = body.addText(leftName.padStart(3,'   '))
 
-      body.addSpacer(8)
+      body.addSpacer(12)
       let tScore = body.addText(lplScore)
       if(lplData[i].leftLogo.score!= '-'){
         tScore.textColor= new Color('#ff0000',1)
       }
-      body.addSpacer(8)
+      body.addSpacer(12)
 
       let rightName =lplData[i].rightLogo.name
        // 队名是两个字母的后面补上空格
-      let tRight = (rightName.length>2)? body.addText(rightName):body.addText(rightName+'  ') 
+      let tRight =body.addText(rightName.padEnd(3,'   ')) 
       body.addSpacer(2)
       let imgRight = body.addImage(await this.getImage(lplData[i].rightLogo.logo))     
       body.addSpacer(20)
@@ -135,6 +139,7 @@ class Widget extends Base {
       if(lplData[i].statusText=='进行中'){
         t4.textColor =new Color('#ff0000',1)
       } 
+      
       t4.font = Font.lightSystemFont(14)
       t.leftAlignText()
       body.centerAlignContent()
@@ -150,10 +155,11 @@ class Widget extends Base {
         tRight.font = Font.lightSystemFont(18)    
       }else{
         imgSize =24
-        tLeft.font = Font.lightSystemFont(22)
+        t.font = Font.lightSystemFont(16)
+        tLeft.font = Font.lightSystemFont(20)
         tScore.font = Font.lightSystemFont(16)
       
-        tRight.font = Font.lightSystemFont(22)
+        tRight.font = Font.lightSystemFont(20)
       }
       imgLeft.imageSize=new Size( imgSize, imgSize)
       imgRight.imageSize=new Size( imgSize, imgSize)
